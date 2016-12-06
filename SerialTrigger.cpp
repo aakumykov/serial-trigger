@@ -6,6 +6,9 @@ class SerialTrigger
     SerialTrigger(String triggerWord){
       this->triggerWord = triggerWord;
     }
+
+    void echoON(){ this->echo = true; }
+    void echoOFF(){ this->echo = false; }
     
     void wait(unsigned long checkInterval=200){
       if (Serial.available() > 0) {
@@ -19,8 +22,7 @@ class SerialTrigger
               this->isTriggered = true;
               this->inputData = "";
             } else {
-              Serial.println(this->inputData);
-              this->inputData = "";
+              if (this->echo) Serial.println(this->inputData);
             }
           }
       }
@@ -40,6 +42,7 @@ class SerialTrigger
       String triggerWord;
       String delimiter = ";";
       unsigned long checkInterval = 200; //ms
+      boolean echo = false;
 
       // служебные
       boolean isTriggered; // основное свойство
