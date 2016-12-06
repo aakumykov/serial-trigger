@@ -15,6 +15,10 @@ class Interval
         return false;
       }
     }
+
+    unsigned long duration(){
+      return this->interval;
+    }
     
   private:
     unsigned long interval = 200;

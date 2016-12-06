@@ -2,8 +2,8 @@
 #include "Interval.cpp"
 
 SerialTrigger sTrigger("start");
-Interval interval1000(1000);
-Interval interval200(200);
+Interval interval1(738);
+Interval interval2(134);
 
 void setup() {
   Serial.begin(9600);
@@ -19,12 +19,12 @@ void loop() {
 //    sTrigger.clear();
 //  }
 
-  if ( interval1000.next() ) {
-    Serial.println( "CHECK INTERVAL 1000, millis: " + String(millis()) );
+  if ( interval1.next() ) {
+    Serial.println( "CHECK INTERVAL "+String(interval1.duration())+", millis: " + String(millis()) );
   }
 
-  if ( interval200.next() ) {
-    Serial.println( "CHECK INTERVAL 200, millis: " + String(millis()) );
+  if ( interval2.next() ) {
+    Serial.println( "CHECK INTERVAL "+String(interval2.duration())+", millis: " + String(millis()) );
   }
 }
 
