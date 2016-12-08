@@ -28,8 +28,10 @@ class SerialTrigger
       }
     }
     
-    boolean triggered(){
-      return this->isTriggered;
+    boolean triggered(bool onlyOnce=true){
+      boolean t = this->isTriggered;
+      if (onlyOnce) this->clear();
+      return t;
     }
     
     void clear(){
