@@ -3,7 +3,7 @@
 class CommandParser
 {
   public:
-    CommandParser(char* command_delimiter, char* data_delimiter){
+    CommandParser(char* command_delimiter = ":", char* data_delimiter = ","){
       this->command_delimiter = command_delimiter;
       this->data_delimiter = data_delimiter;
     }
