@@ -23,7 +23,7 @@ class CommandParser
     return this->the_command;
   }
 
-  int count() {
+  int length() {
     return this->the_counter;
   }
 
