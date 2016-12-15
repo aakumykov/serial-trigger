@@ -1,5 +1,6 @@
 #include "SerialListener.cpp"
 #include "Interval.cpp"
+#include "CommandParser.cpp"
 
 SerialListener sListener;
 Interval interval(10);
