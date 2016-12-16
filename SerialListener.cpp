@@ -1,29 +1,29 @@
 #include <Arduino.h>
 
+// Прекращает приём новых данных, покуда не использованы текущие (течка).
+// При первом считывании хранимых данных освобождается от них, переходит на
+// приём новых. Счётчик длины очищается при считывани хранимых данных, но
+// не при при считывании счётчика.
+
 class SerialListener
 {
   public:
-    SerialTrigger() {}
+    SerialListener(char delimiter = ';') {
+    }
 
     void wait() {
-
-      if (Serial.available() > 0) {
-        Serial.println("serial available");
+      
+      if (!this->dataRecieved && (Serial.available()>0))
+      {
         byte piece = Serial.read();
         
-        if (piece != ';') {
-          
-          this->tempData[this->tempDataCount++] = piece;
-        
-        } else {
-          
-          this->inputData = this->tempData;
-          this->inputDataLength = this->tempDataCount;
-          
+        if (piece == ';')
+        {
           this->dataRecieved = true;
-          
-          this->tempData = NULL;
-          this->tempDataCount = 0;
+        }
+        else 
+        {
+          this->inputData[this->inputDataCounter++] = piece;
         }
       }
     }
@@ -32,36 +32,31 @@ class SerialListener
       return this->dataRecieved;
     }
 
-    char* data(){
+    int length() {
+      return this->inputDataCounter;
+    }
+
+    char* data() {
       char* d = this->inputData;
       this->clear();
       return d;
     }
 
-    int length() {
-      return this->inputDataLength;
-    }
-
-    void clear() {
-      this->inputData = NULL;
-      this->dataRecieved = false;
-      //this->inputDataLength = 0; // Нельзя обнулять, чтобы не зависеть от порядка использования функций.
-    }
-
   private:
     // настраиваемые пользователем
-    char delimiter = ";";
-    unsigned long checkInterval = 200; //ms
-    boolean echo = false;
+    char delimiter;
 
     // служебные
     boolean dataRecieved = false;
-    
-    char* tempData = new char;
-    int tempDataCount = 0;
-    
     char* inputData = new char;
-    int inputDataLength = 0;
+    int inputDataCounter = 0;
+
+    void clear() {
+      this->inputData = NULL;
+      this->inputData = new char;
+      this->inputDataCounter = 0;
+      this->dataRecieved = false;
+    }
 };
 
 
