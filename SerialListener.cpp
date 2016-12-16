@@ -8,6 +8,7 @@ class SerialListener
     void wait() {
 
       if (Serial.available() > 0) {
+        Serial.println("serial available");
         byte piece = Serial.read();
         
         if (piece != ';') {

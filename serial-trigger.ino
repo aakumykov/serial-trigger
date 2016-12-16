@@ -20,11 +20,14 @@ void loop() {
 
         // не принимать новые, пока есть старые...
 
-      int len = sListener.length();
-      char* data = sListener.data();
+//      int len = sListener.length();
+//      char* data = sListener.data();
 
-      Serial.print("length: "); Serial.println(len);
-      Serial.print("data: "); Serial.println(data);
+      Serial.print("length: "); Serial.println(sListener.length());
+      Serial.print("data: "); Serial.println(sListener.data());
+
+      Serial.print("length: "); Serial.println(sListener.length());
+      Serial.print("data: "); Serial.println(sListener.data());
     }
   }
 }
