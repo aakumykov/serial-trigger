@@ -64,8 +64,16 @@ class SerialListener
     char* inputData = new char;
     int inputDataCounter = 0;
 
-    // тестовая последовательность:
+    // тестовая последовательность 1:
     // qwertry; Enter
+    // 123; Enter
+
+    // тестовая последовательность 2:
+    // abc; Enter
+    // 123456; Enter
+    // qwerty; Enter
+    // 1; Enter
+    // 2; Enter
     // 123; Enter
 
     void clear() {
