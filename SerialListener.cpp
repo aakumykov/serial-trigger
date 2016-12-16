@@ -23,10 +23,10 @@ class SerialListener
         }
         else 
         {
-          Serial.print(this->inputDataCounter);
-          Serial.print(": ");
-          Serial.print(piece); Serial.print(" ("); Serial.print(char(piece)); Serial.print(")");
-          Serial.println("");
+//          Serial.print(this->inputDataCounter);
+//          Serial.print(": ");
+//          Serial.print(piece); Serial.print(" ("); Serial.print(char(piece)); Serial.print(")");
+//          Serial.println("");
           this->inputData[this->inputDataCounter++] = piece;
         }
       }
@@ -64,8 +64,13 @@ class SerialListener
     char* inputData = new char;
     int inputDataCounter = 0;
 
+    // тестовая последовательность:
+    // qwertry; Enter
+    // 123; Enter
+
     void clear() {
-      this->inputData = NULL;
+      delete this->inputData;
+      //this->inputData = NULL;
       this->inputData = new char;
       this->inputDataCounter = 0;
       this->dataRecieved = false;

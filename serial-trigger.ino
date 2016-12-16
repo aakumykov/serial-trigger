@@ -17,15 +17,14 @@ void loop() {
   if (interval.ready()) {
     
     if (sListener.recieved()){
-
-//      int len = sListener.length();
-//      char* data = sListener.data();
-
-      Serial.print("length: "); Serial.println(sListener.length());
-      Serial.print("length: "); Serial.println(sListener.length());
-      Serial.print("data: "); Serial.println(sListener.data());
-      Serial.print("length: "); Serial.println(sListener.length());
+      int len = sListener.length();
+      char* data = sListener.data();
+//      Serial.print(data);
+//      Serial.print(" (");
+//      Serial.print(len);
+//      Serial.println(")");
       Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      
     }
   }
 }
