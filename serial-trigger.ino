@@ -18,16 +18,14 @@ void loop() {
     
     if (sListener.recieved()){
 
-        // не принимать новые, пока есть старые...
-
 //      int len = sListener.length();
 //      char* data = sListener.data();
 
       Serial.print("length: "); Serial.println(sListener.length());
-      Serial.print("data: "); Serial.println(sListener.data());
-
       Serial.print("length: "); Serial.println(sListener.length());
       Serial.print("data: "); Serial.println(sListener.data());
+      Serial.print("length: "); Serial.println(sListener.length());
+      Serial.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     }
   }
 }
