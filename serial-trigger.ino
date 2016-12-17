@@ -46,18 +46,18 @@ void loop() {
 //      Serial.println("");
 // !Эта конструкция выдаёт глючные данные!
 
-      Serial.println("------ main program ------");
-      for (int i=0; i<len; i++) {
-        Serial.print(i); Serial.print(": ");
-        Serial.print(data[i]);
-        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
-        Serial.println("");
-      }
-
-      //Serial.println("------------");
-      //show(data, len);
-      
-      Serial.println("------ main program ------");
+//      Serial.println("------ main program ------");
+//      for (int i=0; i<len; i++) {
+//        Serial.print(i); Serial.print(": ");
+//        Serial.print(data[i]);
+//        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
+//        Serial.println("");
+//      }
+//
+//      //Serial.println("------------");
+//      //show(data, len);
+//      
+//      Serial.println("------ main program ------");
 
         //cmdParser.parse(data);
     }
