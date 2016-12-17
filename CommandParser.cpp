@@ -40,4 +40,3 @@ class CommandParser
     int* the_data = new int;
 };
 
-
