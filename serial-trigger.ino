@@ -6,8 +6,17 @@ SerialListener sListener;
 Interval interval(10);
 CommandParser cmdParser;
 
-void show(char* str, int len) {
-  for (int i=0; i<len; i++) { Serial.print(str[i]); }
+void show(char* str, int len = NULL) {
+  if (NULL != len) {
+    for (int i=0; i<len; i++) { Serial.print(str[i]); }
+  } else {
+    int i = 0;
+    char b = str[i];
+    while (NULL != b) {
+      Serial.print(b);
+      char b = str[i++];
+    }
+  }
   Serial.println("");
 }
 
@@ -24,6 +33,9 @@ void loop() {
     if (sListener.recieved()){
       int len = sListener.length();
       char* data = sListener.data();
+
+// Странный эффект при последовательности (пять раз, с нуля):
+// command:1,2,3,4,5;
 
       show(data, len);
 
