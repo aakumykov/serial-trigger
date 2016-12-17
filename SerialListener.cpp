@@ -19,6 +19,8 @@ class SerialListener
         
         if (piece == ';')
         {
+          // добавляю символ конца строки
+          this->inputData[this->inputDataCounter++] = 0;
           this->dataRecieved = true;
         }
         else 
