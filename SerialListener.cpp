@@ -43,34 +43,27 @@ class SerialListener
     }
 
     char* data() {
-      Serial.println("");
-      Serial.println("----- SerialListener.data() -----");
-//      Serial.print("length: "); Serial.println(this->inputDataCounter);
-//      Serial.print("data: "); Serial.println(this->inputData);
-//      for (int i=0; i < (this->inputDataCounter-1); i++) {
-//        Serial.print(this->inputData[i]); Serial.print("|");
-//      }
 //      Serial.println("");
+//      Serial.println("----- SerialListener.data() -----");
+//
+//        for (int i=0; i<this->inputDataCounter; i++) {
+//          Serial.print(i); Serial.print(": ");
+//          Serial.print(this->inputData[i]);
+//          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
+//          Serial.println("");
+//        }
+//
+//      Serial.println("----- SerialListener.data() -----");
 
-        for (int i=0; i<this->inputDataCounter; i++) {
-          Serial.print(i); Serial.print(": ");
-          Serial.print(this->inputData[i]);
-          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
-          Serial.println("");
-        }
-
-      Serial.println("----- SerialListener.data() -----");
-
-      //return this->inputData;
-
+      // копирование файлов в новый массив
       char* d = new char;
       for (int i=0; i<this->inputDataCounter; i++) {
         d[i] = this->inputData[i];
       }
 
-      //char* d = this->inputData;
-
+      // осичтка текущего массива (хранилища)
       this->clear();
+      
       return d;
     }
 
