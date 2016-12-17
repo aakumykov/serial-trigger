@@ -32,6 +32,8 @@ void loop() {
       }
 
       Serial.println("------ main program ------");
+
+      //delay(3000);
       
 //      Serial.print(data);
 //      Serial.print(" (");

@@ -43,6 +43,7 @@ class SerialListener
     }
 
     char* data() {
+      Serial.println("");
       Serial.println("----- SerialListener.data() -----");
 //      Serial.print("length: "); Serial.println(this->inputDataCounter);
 //      Serial.print("data: "); Serial.println(this->inputData);
@@ -59,8 +60,16 @@ class SerialListener
         }
 
       Serial.println("----- SerialListener.data() -----");
-      
-      char* d = this->inputData;
+
+      //return this->inputData;
+
+      char* d = new char;
+      for (int i=0; i<this->inputDataCounter; i++) {
+        d[i] = this->inputData[i];
+      }
+
+      //char* d = this->inputData;
+
       this->clear();
       return d;
     }
