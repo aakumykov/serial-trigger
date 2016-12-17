@@ -52,14 +52,11 @@ void loop() {
 //        Serial.print(data[i]);
 //        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
 //        Serial.println("");
-//      }
-//
-//      //Serial.println("------------");
-//      //show(data, len);
-//      
+//      }      
 //      Serial.println("------ main program ------");
 
-        //cmdParser.parse(data);
+        cmdParser.parse(data);
+//        Serial.println(cmdParser.command());
     }
   }
 }

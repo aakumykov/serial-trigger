@@ -20,6 +20,7 @@ class CommandParser
   }
 
   char* command(){
+    //Serial.println(sizeof(this->the_command));
     return this->the_command;
   }
 

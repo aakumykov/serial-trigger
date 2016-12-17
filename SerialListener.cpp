@@ -46,17 +46,17 @@ class SerialListener
     }
 
     char* data() {
-      Serial.println("");
-      Serial.println("----- SerialListener.data() -----");
-
-        for (int i=0; i<this->inputDataCounter; i++) {
-          Serial.print(i); Serial.print(": ");
-          Serial.print(this->inputData[i]);
-          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
-          Serial.println("");
-        }
-
-      Serial.println("----- SerialListener.data() -----");
+//      Serial.println("");
+//      Serial.println("----- SerialListener.data() -----");
+//
+//        for (int i=0; i<this->inputDataCounter; i++) {
+//          Serial.print(i); Serial.print(": ");
+//          Serial.print(this->inputData[i]);
+//          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
+//          Serial.println("");
+//        }
+//
+//      Serial.println("----- SerialListener.data() -----");
 
       // копирование файлов в новый массив
       char* d = new char;
