@@ -46,7 +46,7 @@ class SerialListener
       Serial.println("----- SerialListener.data() -----");
       Serial.print("length: "); Serial.println(this->inputDataCounter);
       Serial.print("data: "); Serial.println(this->inputData);
-      for (int i=0; i < this->inputDataCounter; i++) {
+      for (int i=0; i < (this->inputDataCounter-1); i++) {
         Serial.print(this->inputData[i]); Serial.print("|");
       }
       Serial.println("");
