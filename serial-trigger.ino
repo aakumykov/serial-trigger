@@ -20,6 +20,9 @@ void loop() {
       int len = sListener.length();
       char* data = sListener.data();
 
+      for (int i=0; i<len; i++) { Serial.print(data[i]); }
+      Serial.println("");
+
 //      Serial.print(data);
 //      Serial.print(" (");
 //      Serial.print(len);
@@ -27,14 +30,14 @@ void loop() {
 //      Serial.print("");
 //      Serial.println("");
 
-      Serial.println("------ main program ------");
-      for (int i=0; i<len; i++) {
-        Serial.print(i); Serial.print(": ");
-        Serial.print(data[i]);
-        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
-        Serial.println("");
-      }
-      Serial.println("------ main program ------");
+//      Serial.println("------ main program ------");
+//      for (int i=0; i<len; i++) {
+//        Serial.print(i); Serial.print(": ");
+//        Serial.print(data[i]);
+//        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
+//        Serial.println("");
+//      }
+//      Serial.println("------ main program ------");
     }
   }
 }
