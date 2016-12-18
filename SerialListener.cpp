@@ -60,14 +60,17 @@ class SerialListener
 
       // копирование файлов в новый массив
       char* d = new char;
+
       for (int i=0; i<this->inputDataCounter; i++) {
         d[i] = this->inputData[i];
       }
 
+//      strcpy(d, this->inputData);
+
       // осичтка текущего массива (хранилища)
-      this->clear();
+      //this->clear();
       
-      return d;
+//      return d;
     }
 
   private:

@@ -50,33 +50,11 @@ void loop() {
   if (interval.ready()) {
     
     if (sListener.recieved()){
-      int len = sListener.length();
+      
+      //int len = sListener.length();
       char* data = sListener.data();
-
-// Странный эффект при последовательности (пять раз, с нуля):
-// command:1,2,3,4,5;
-
-// !Эта конструкция выдаёт глючные данные!
-//      Serial.print(data);
-//      Serial.print(" (");
-//      Serial.print(len);
-//      Serial.print(")");
-//      Serial.print("");
-//      Serial.println("");
-// !Эта конструкция выдаёт глючные данные!
-
-//      Serial.println("------ main program ------");
-//      for (int i=0; i<len; i++) {
-//        Serial.print(i); Serial.print(": ");
-//        Serial.print(data[i]);
-//        Serial.print(" [code: "); Serial.print(byte(data[i])); Serial.print("]");
-//        Serial.println("");
-//      }      
-//      Serial.println("------ main program ------");
-
-        lcdShow(data,1);
-        //cmdParser.parse(data);
-//        Serial.println(cmdParser.command());
+      delay(3000);
+      
     }
   }
 }
