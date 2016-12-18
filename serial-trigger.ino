@@ -1,10 +1,14 @@
+#include <LiquidCrystal_PCF8574.h>
+#include <Wire.h>
 #include "SerialListener.cpp"
 #include "Interval.cpp"
 #include "CommandParser.cpp"
 
+LiquidCrystal_PCF8574 lcd(0x27);
 SerialListener sListener;
 Interval interval(10);
 CommandParser cmdParser;
+
 
 void show(char* str, int len = NULL) {
   if (NULL != len) {
@@ -20,9 +24,24 @@ void show(char* str, int len = NULL) {
   Serial.println("");
 }
 
+void lcdShow(char* msg, int row) {
+  lcd.setCursor(0,row);
+  lcd.print("                ");
+  lcd.setCursor(0,row);
+  lcd.print(msg);
+}
+
+
 void setup() {
+  char greeting[] = "=serial-trigger=";
+  
   Serial.begin(9600);
-  Serial.println("=serial-trigger=");
+  Serial.println(greeting);
+
+  lcd.begin(16,2); lcd.setBacklight(1); lcd.clear(); lcd.home();
+  lcdShow(greeting,0);
+
+  delay(500);
 }
 
 void loop() {
@@ -55,7 +74,8 @@ void loop() {
 //      }      
 //      Serial.println("------ main program ------");
 
-        cmdParser.parse(data);
+        lcdShow(data,1);
+        //cmdParser.parse(data);
 //        Serial.println(cmdParser.command());
     }
   }
