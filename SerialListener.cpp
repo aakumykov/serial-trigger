@@ -15,6 +15,8 @@ class SerialListener
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
+        Serial.println("serial available");
+        
         byte piece = Serial.read();
         
         if (piece == ';')
