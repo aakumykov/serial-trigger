@@ -34,6 +34,9 @@ void loop() {
       int len = sListener.length();
       char* data = sListener.data();
 
+      Serial.println("");
+      Serial.print("length: "); Serial.println(len);
+
 //      Serial.println("------ main program ------");
 //      for (int i=0; i<len; i++) {
 //        Serial.print(i); Serial.print(": ");

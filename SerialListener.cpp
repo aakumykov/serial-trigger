@@ -18,9 +18,14 @@ class SerialListener
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
-        Serial.print("serial data available");
-        Serial.print(" ");
-        Serial.println(this->inputDataCounter);
+//        Serial.print("serial data available");
+//        Serial.print(" ");
+//        Serial.print(this->inputDataCounter);
+//        Serial.print(" ");
+//        Serial.print(sizeof(this->inputData));
+//        Serial.print(" ");
+//        Serial.print(this->maxInputLength);
+//        Serial.println("");
         
         byte piece = Serial.read();
         
@@ -60,22 +65,26 @@ class SerialListener
     }
 
     char* data() {
-      Serial.println("");
-      Serial.println("----- SerialListener.data() -----");
-
-        for (int i=0; i<this->inputDataCounter; i++) {
-          Serial.print(i); Serial.print(": ");
-          Serial.print(this->inputData[i]);
-          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
-          Serial.println("");
-        }
-
-      Serial.println("----- SerialListener.data() -----");
+//      Serial.println("");
+//      Serial.println("----- SerialListener.data() -----");
+//
+//        for (int i=0; i<this->inputDataCounter; i++) {
+//          Serial.print(i); Serial.print(": ");
+//          Serial.print(this->inputData[i]);
+//          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
+//          Serial.println("");
+//        }
+//
+//      Serial.println("----- SerialListener.data() -----");
 
       // копирование файлов в новый массив
-      char* d = new char[this->inputDataCounter];
+      char* d = new char[512];
+      
       for (int i=0; i<this->inputDataCounter; i++) {
+        Serial.print(this->inputData[i]); Serial.print(", ");
         d[i] = this->inputData[i];
+        Serial.print(d[i]);
+        Serial.println("");
       }
 
       // осичтка текущего массива (хранилища)
