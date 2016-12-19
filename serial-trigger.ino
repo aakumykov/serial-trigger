@@ -2,7 +2,7 @@
 #include "Interval.cpp"
 #include "CommandParser.cpp"
 
-SerialListener sListener;
+SerialListener sListener(512, ';');
 Interval interval(10);
 CommandParser cmdParser;
 
@@ -34,18 +34,6 @@ void loop() {
       int len = sListener.length();
       char* data = sListener.data();
 
-// Странный эффект при последовательности (пять раз, с нуля):
-// command:1,2,3,4,5;
-
-// !Эта конструкция выдаёт глючные данные!
-//      Serial.print(data);
-//      Serial.print(" (");
-//      Serial.print(len);
-//      Serial.print(")");
-//      Serial.print("");
-//      Serial.println("");
-// !Эта конструкция выдаёт глючные данные!
-
 //      Serial.println("------ main program ------");
 //      for (int i=0; i<len; i++) {
 //        Serial.print(i); Serial.print(": ");
@@ -55,7 +43,7 @@ void loop() {
 //      }      
 //      Serial.println("------ main program ------");
 
-        cmdParser.parse(data);
+//        cmdParser.parse(data);
 //        Serial.println(cmdParser.command());
     }
   }

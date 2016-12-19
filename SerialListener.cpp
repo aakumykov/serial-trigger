@@ -8,22 +8,35 @@
 class SerialListener
 {
   public:
-    SerialListener(char delimiter = ';') {
+    //SerialListener(int maxInputLength, char delimiter) {
+    SerialListener(int maxLen, char dlmtr) {
+      this->maxInputLength = maxLen;
+      this->delimiter = dlmtr;
     }
 
     void wait() {
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
+        Serial.print("serial data available");
+        Serial.print(" ");
+        Serial.println(this->inputDataCounter);
+        
         byte piece = Serial.read();
         
-        if (piece == ';')
+        if (piece == this->delimiter)
         {
            // защита от "пустых данных"
            if (0 != this->inputDataCounter) {
             // добавляю символ конца строки
-            this->inputData[this->inputDataCounter++] = 0;
+            this->inputData[this->inputDataCounter] = char(0);
+            this->inputDataCounter += 1;
             this->dataRecieved = true;
+
+            Serial.println("");
+            Serial.println("data just recieved:");
+            Serial.print("length: "); Serial.println(this->inputDataCounter);
+            Serial.print("data: "); Serial.println(this->inputData);
            }
         }
         else 
@@ -32,7 +45,8 @@ class SerialListener
 //          Serial.print(": ");
 //          Serial.print(piece); Serial.print(" ("); Serial.print(char(piece)); Serial.print(")");
 //          Serial.println("");
-          this->inputData[this->inputDataCounter++] = piece;
+          this->inputData[this->inputDataCounter] = piece;
+          this->inputDataCounter += 1;
         }
       }
     }
@@ -46,20 +60,20 @@ class SerialListener
     }
 
     char* data() {
-//      Serial.println("");
-//      Serial.println("----- SerialListener.data() -----");
-//
-//        for (int i=0; i<this->inputDataCounter; i++) {
-//          Serial.print(i); Serial.print(": ");
-//          Serial.print(this->inputData[i]);
-//          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
-//          Serial.println("");
-//        }
-//
-//      Serial.println("----- SerialListener.data() -----");
+      Serial.println("");
+      Serial.println("----- SerialListener.data() -----");
+
+        for (int i=0; i<this->inputDataCounter; i++) {
+          Serial.print(i); Serial.print(": ");
+          Serial.print(this->inputData[i]);
+          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
+          Serial.println("");
+        }
+
+      Serial.println("----- SerialListener.data() -----");
 
       // копирование файлов в новый массив
-      char* d = new char;
+      char* d = new char[this->inputDataCounter];
       for (int i=0; i<this->inputDataCounter; i++) {
         d[i] = this->inputData[i];
       }
@@ -72,29 +86,17 @@ class SerialListener
 
   private:
     // настраиваемые пользователем
+    int maxInputLength;
     char delimiter;
 
     // служебные
-    boolean dataRecieved = false;
-    char* inputData = new char;
+    char* inputData = new char[this->maxInputLength];
     int inputDataCounter = 0;
-
-    // тестовая последовательность 1:
-    // qwertry; Enter
-    // 123; Enter
-
-    // тестовая последовательность 2:
-    // abc; Enter
-    // 123456; Enter
-    // qwerty; Enter
-    // 1; Enter
-    // 2; Enter
-    // 123; Enter
+    boolean dataRecieved = false;
 
     void clear() {
       delete this->inputData;
-      //this->inputData = NULL;
-      this->inputData = new char;
+      this->inputData = new char[this->maxInputLength];
       this->inputDataCounter = 0;
       this->dataRecieved = false;
     }
