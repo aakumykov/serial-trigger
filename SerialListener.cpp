@@ -33,26 +33,33 @@ class SerialListener
         if (piece == this->delimiter)
         {
            // защита от "пустых данных"
-           if (0 != this->inputDataCounter) {
-            // добавляю символ конца строки
-            this->inputData[this->inputDataCounter] = char(0);
-            this->inputDataCounter += 1;
-            this->dataRecieved = true;
+           if (0 != this->inputDataCounter) 
+           {
+              // добавляю символ конца строки
+              this->inputData[this->inputDataCounter] = char(0);
+              this->inputDataCounter += 1;
+              this->dataRecieved = true;
+  
+              Serial.println("");
+              Serial.println("data just recieved:");
+              Serial.print("length: "); Serial.println(this->inputDataCounter);
+              Serial.print("data: "); Serial.println(this->inputData);
 
-            Serial.println("");
-            Serial.println("data just recieved:");
-            Serial.print("length: "); Serial.println(this->inputDataCounter);
-            Serial.print("data: "); Serial.println(this->inputData);
+              Serial.println("");
+              Serial.println("output in for cycle:");
+              Serial.println(this->inputDataCounter);
+              for (int j=0; j < this->inputDataCounter; j++) {
+                Serial.print(this->inputData[j]);
+              } Serial.println("");
 
-            for (int j=0; j < this->inputDataCounter; j++) {
-              this->outputData[j] = this->inputData[j];
-              Serial.println(this->inputData[j]);
-            }
-
-            for (int j=0; j < this->inputDataCounter; j++) {
-              this->outputData[j] = this->inputData[j];
-              Serial.println(this->outputData[j]);
-            }
+              Serial.println("");
+              Serial.println("output in for cycle with assignment:");
+              Serial.println(this->inputDataCounter);
+              for (int j=0; j < this->inputDataCounter; j++) {
+                this->outputData[j] = this->inputData[j];
+                //Serial.print(this->outputData[j]);
+                Serial.print(this->inputData[j]);
+              } Serial.println("");
            }
         }
         else 
