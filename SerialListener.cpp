@@ -18,16 +18,17 @@ class SerialListener
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
-//        Serial.print("serial data available");
-//        Serial.print(" ");
-//        Serial.print(this->inputDataCounter);
-//        Serial.print(" ");
-//        Serial.print(sizeof(this->inputData));
-//        Serial.print(" ");
-//        Serial.print(this->maxInputLength);
-//        Serial.println("");
+        Serial.print("serial data available");
+        Serial.print(" ");
+        Serial.print(this->inputDataCounter);
+        Serial.print(" ");
         
         byte piece = Serial.read();
+
+        Serial.print(piece);
+        Serial.print(" ");
+        Serial.print(char(piece));
+        Serial.println("");
         
         if (piece == this->delimiter)
         {
@@ -42,6 +43,16 @@ class SerialListener
             Serial.println("data just recieved:");
             Serial.print("length: "); Serial.println(this->inputDataCounter);
             Serial.print("data: "); Serial.println(this->inputData);
+
+            for (int j=0; j < this->inputDataCounter; j++) {
+              this->outputData[j] = this->inputData[j];
+              Serial.println(this->inputData[j]);
+            }
+
+            for (int j=0; j < this->inputDataCounter; j++) {
+              this->outputData[j] = this->inputData[j];
+              Serial.println(this->outputData[j]);
+            }
            }
         }
         else 
@@ -50,7 +61,7 @@ class SerialListener
 //          Serial.print(": ");
 //          Serial.print(piece); Serial.print(" ("); Serial.print(char(piece)); Serial.print(")");
 //          Serial.println("");
-          this->inputData[this->inputDataCounter] = piece;
+          this->inputData[this->inputDataCounter] = char(piece);
           this->inputDataCounter += 1;
         }
       }
@@ -66,31 +77,45 @@ class SerialListener
 
     char* data() {
 //      Serial.println("");
-//      Serial.println("----- SerialListener.data() -----");
+//      Serial.println("----- SerialListener.data(1) -----");
 //
-//        for (int i=0; i<this->inputDataCounter; i++) {
+//        for (int i=0; i < this->inputDataCounter; i++) {
 //          Serial.print(i); Serial.print(": ");
 //          Serial.print(this->inputData[i]);
 //          Serial.print(" [code: "); Serial.print(byte(this->inputData[i])); Serial.print("]");
 //          Serial.println("");
 //        }
 //
-//      Serial.println("----- SerialListener.data() -----");
+//      Serial.println("----- SerialListener.data(1) -----");
 
       // копирование файлов в новый массив
-      char* d = new char[512];
+      //char* d = new char[512];
+
+      //Serial.print("this->inputDataCounter: "); Serial.println(this->inputDataCounter);
       
-      for (int i=0; i<this->inputDataCounter; i++) {
-        Serial.print(this->inputData[i]); Serial.print(", ");
-        d[i] = this->inputData[i];
-        Serial.print(d[i]);
-        Serial.println("");
-      }
+//      for (int j=0; j < this->inputDataCounter; j++) {
+//        Serial.println(this->inputData[j]);
+//        this->outputData[j] = this->inputData[j];
+//        //this->someByte = this->inputData[j];
+//      }
+
+//      Serial.println("");
+//      Serial.println("----- SerialListener.data(2) -----");
+//
+//        for (int k=0; k < this->inputDataCounter; k++) {
+//          Serial.print(k); Serial.print(": ");
+//          Serial.print(this->outputData[k]);
+//          Serial.print(" [code: "); Serial.print(byte(this->outputData[k])); Serial.print("]");
+//          Serial.println("");
+//        }
+//
+//      Serial.println("----- SerialListener.data(2) -----");
 
       // осичтка текущего массива (хранилища)
-      this->clear();
+      //this->clear();
+      this->dataRecieved = false;
       
-      return d;
+      return this->outputData;
     }
 
   private:
@@ -100,8 +125,10 @@ class SerialListener
 
     // служебные
     char* inputData = new char[this->maxInputLength];
+    char* outputData = new char[this->maxInputLength];
     int inputDataCounter = 0;
     boolean dataRecieved = false;
+    char someByte;
 
     void clear() {
       delete this->inputData;
