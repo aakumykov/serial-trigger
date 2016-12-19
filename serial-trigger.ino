@@ -52,8 +52,11 @@ void loop() {
     if (sListener.recieved()){
       
       //int len = sListener.length();
-      char* data = sListener.data();
-      delay(3000);
+      //char* data = sListener.data();
+
+      sListener.data();
+      
+      delay(5000);
       
     }
   }

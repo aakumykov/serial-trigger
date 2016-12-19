@@ -61,7 +61,7 @@ class SerialListener
       Serial.println("----- SerialListener.data() -----");
 
       // копирование файлов в новый массив
-      char* d = new char;
+      char* d = new char[this->inputDataCounter];
 
       for (int i=0; i<this->inputDataCounter; i++) {
         d[i] = this->inputData[i];
@@ -80,26 +80,14 @@ class SerialListener
     char delimiter;
 
     // служебные
-    boolean dataRecieved = false;
-    char* inputData = new char;
+    int maxInputLength = 512;
+    char* inputData = new char[this->maxInputLength];
     int inputDataCounter = 0;
-
-    // тестовая последовательность 1:
-    // qwertry; Enter
-    // 123; Enter
-
-    // тестовая последовательность 2:
-    // abc; Enter
-    // 123456; Enter
-    // qwerty; Enter
-    // 1; Enter
-    // 2; Enter
-    // 123; Enter
+    boolean dataRecieved = false;
 
     void clear() {
       delete this->inputData;
-      //this->inputData = NULL;
-      this->inputData = new char;
+      this->inputData = new char[this->maxInputLength];
       this->inputDataCounter = 0;
       this->dataRecieved = false;
     }
