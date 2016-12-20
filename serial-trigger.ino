@@ -17,10 +17,14 @@ void loop() {
     
     if (sListener.isRecieved()){
 
-      Serial.print("main loop: data recieved, length is ");
-      Serial.println(sListener.dataLength());
-
+      int len = sListener.dataLength();
       char* data = sListener.data();
+      
+      //Serial.print("main loop: data recieved, length is ");
+      Serial.println(len); // раскомментирование этой строки нарушает работу!
+      
+      //Serial.println("data: ");
+      Serial.println(data);
       
 //      Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
       
