@@ -14,23 +14,23 @@ class SerialListener
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
-        //Serial.println("data is available");
+        ////Serial.println("data is available");
         
         byte piece = Serial.read();
         
         if (piece == this->delimiter && (0 != this->len))
         {
           // завершаю приём
-          Serial.println("RECIEVE COMPLETE");
+          //Serial.println("RECIEVE COMPLETE");
           this->inputData[this->len] = char(0);
           this->len += 1;
           this->dataRecieved = true;
-          Serial.println(this->inputData);
+          //Serial.println(this->inputData);
         }
         else 
         {
           // продолжаю приём
-          Serial.println("continue recieving...");
+          //Serial.println("continue recieving...");
           this->inputData[this->len] = char(piece);
           this->len += 1;
         }
@@ -38,21 +38,21 @@ class SerialListener
     }
 
     boolean isRecieved() {
-      //Serial.println("SerialListener.isRecieved()");
+      ////Serial.println("SerialListener.isRecieved()");
       return this->dataRecieved;
     }
 
     int dataLength() {
-      //Serial.println("SerialListener.dataLength()");
+      ////Serial.println("SerialListener.dataLength()");
       return this->len;
     }
 
     char* data() {
-      Serial.println("SerialListener.data()");
-      Serial.print("this->maxInputLength="); Serial.println(this->maxInputLength);
-
-      Serial.print("this->len=");
-      Serial.println(this->len);
+//      Serial.println("SerialListener.data()");
+//      Serial.print("this->maxInputLength="); Serial.println(this->maxInputLength);
+//
+//      Serial.print("this->len=");
+//      Serial.println(this->len);
 
       this->outputData = new char[this->len];
       this->outputData = this->inputData;
@@ -60,8 +60,9 @@ class SerialListener
 
       for (int i=0; i < this->len; i++) {
 //        //this->outputData[i] = this->inputData[i];
-        Serial.print(this->outputData[i]);
-      } Serial.println("");
+        //Serial.print(this->outputData[i]);
+      }
+      //Serial.println("");
 
 // Три строчки ниже нарушают работу
 //      Serial.print("this->outputData=");
