@@ -30,12 +30,14 @@ void loop() {
 
       cParser.parse(data);
 
-      char* command = cParser.command();
-      Serial.println(command);
+      int command = cParser.command();
+      //Serial.println(command);
       
       int cLen = cParser.length();
-      Serial.println(cLen);
-      
+      //Serial.println(cLen);
+
+      Serial.print(command);
+      Serial.print(": ");
       int* cData = cParser.data();
       for (int i=0; i < cLen; i++) {
         Serial.print(cData[i]);

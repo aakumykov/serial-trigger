@@ -9,7 +9,8 @@ class CommandParser
     }
     
   void parse(char* inputData) {    
-    this->the_command = strtok(inputData, this->command_delimiter);
+    // Ноль - признак неверной команды.
+    this->the_command = atoi( strtok(inputData, this->command_delimiter) );
 
     char* token;
     token = strtok(NULL, this->data_delimiter);
@@ -19,7 +20,7 @@ class CommandParser
     }
   }
 
-  char* command(){
+  int command(){
     //Serial.println(sizeof(this->the_command));
     return this->the_command;
   }
@@ -36,7 +37,7 @@ class CommandParser
     char* command_delimiter;
     char* data_delimiter;
 
-    char* the_command;
+    int the_command;
     int the_counter = 0;
     int* the_data = new int;
 };
