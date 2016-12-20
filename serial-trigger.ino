@@ -1,13 +1,15 @@
 #include "SerialListener.cpp"
 #include "Interval.cpp"
+#include "CommandParser.cpp"
 
 SerialListener sListener(512, ';');
 Interval interval(10);
+CommandParser cParser;
 
 void setup() {
   Serial.begin(9600);
   Serial.println("=serial-trigger=");
-  Serial.println("setup()");
+  //Serial.println("setup()");
 }
 
 void loop() {
@@ -26,10 +28,18 @@ void loop() {
       //Serial.println("dat1a: "); // раскомментирование этой строки нарушает работу!
       Serial.println(data);
 
-//      for (int i=0; i<len; i++) {
-//        Serial.println(data[i]);
-//        delay(500);
-//      }
+      cParser.parse(data);
+
+      char* command = cParser.command();
+      Serial.println(command);
+      
+      int cLen = cParser.length();
+      Serial.println(cLen);
+      
+      int* cData = cParser.data();
+      for (int i=0; i < cLen; i++) {
+        Serial.print(cData[i]);
+      } Serial.println("");
       
       //Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
       //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
