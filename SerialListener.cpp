@@ -75,7 +75,7 @@ class SerialListener
 //        this->outputData[i] = this->inputData[i];
 //      }
 
-      //this->clear();
+      this->clear();
       
       return this->outputData;
     }
@@ -92,7 +92,7 @@ class SerialListener
     boolean dataRecieved = false;
 
     void clear() {
-      Serial.println("SerialListener.clear()");
+      //Serial.println("SerialListener.clear()");
       this->len = 0;
       this->dataRecieved = false;
     }

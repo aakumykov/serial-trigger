@@ -2,7 +2,7 @@
 #include "Interval.cpp"
 
 SerialListener sListener(512, ';');
-Interval interval(3000);
+Interval interval(10);
 
 void setup() {
   Serial.begin(9600);
