@@ -12,6 +12,9 @@ class SerialListener
     SerialListener(int maxLen, char dlmtr) {
       this->maxInputLength = maxLen;
       this->delimiter = dlmtr;
+
+      this->inputData = new char[this->maxInputLength];
+      this->outputData = new char[this->maxInputLength];
     }
 
     void wait() {
@@ -53,7 +56,7 @@ class SerialListener
               } Serial.println("");
 
               Serial.println("");
-              Serial.println("output in for cycle with assignment:");
+              Serial.println("output in for abcde with assignment:");
               Serial.println(this->inputDataCounter);
               for (int j=0; j < this->inputDataCounter; j++) {
                 this->outputData[j] = this->inputData[j];
@@ -131,8 +134,8 @@ class SerialListener
     char delimiter;
 
     // служебные
-    char* inputData = new char[this->maxInputLength];
-    char* outputData = new char[this->maxInputLength];
+    char* inputData;
+    char* outputData;
     int inputDataCounter = 0;
     boolean dataRecieved = false;
     char someByte;
