@@ -7,8 +7,13 @@ class CommandParser
       this->command_delimiter = command_delimiter;
       this->data_delimiter = data_delimiter;
     }
+
+  void parse(char* inputData) {
+    Serial.print("CommandParser.parse(), data: ");
+    Serial.println(inputData);
+
+    this->the_data = new int[512];
     
-  void parse(char* inputData) {    
     // Ноль - признак неверной команды.
     this->the_command = atoi( strtok(inputData, this->command_delimiter) );
 
@@ -30,7 +35,9 @@ class CommandParser
   }
 
   int* data() {
-    return this->the_data;
+    int* output_data = new int[this->the_counter];
+         output_data = this->the_data;
+    return output_data;
   }
 
   private:
@@ -39,7 +46,7 @@ class CommandParser
 
     int the_command;
     int the_counter = 0;
-    int* the_data = new int;
+    int* the_data;
 };
 
 
