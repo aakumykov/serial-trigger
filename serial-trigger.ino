@@ -21,17 +21,19 @@ void loop() {
       char* data = sListener.data();
       
       //Serial.print("main loop: data recieved, length is ");
-      Serial.println(len); // раскомментирование этой строки нарушает работу!
+      //Serial.println(len); 
       
-      //Serial.println("data: ");
+      //Serial.println("dat1a: "); // раскомментирование этой строки нарушает работу!
       Serial.println(data);
-      
-//      Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
-      
-      //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
-//      Serial.println(sListener.data());
 
-      //sListener.clear();
+//      for (int i=0; i<len; i++) {
+//        Serial.println(data[i]);
+//        delay(500);
+//      }
+      
+      //Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
+      //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
+      //Serial.println(sListener.data());
     }
   }
 }

@@ -55,11 +55,10 @@ class SerialListener
 //      Serial.println(this->len);
 
       this->outputData = new char[this->len];
-      this->outputData = this->inputData;
-      //this->inputData
+      //this->outputData = this->inputData; // этот метод присвоения работает. Очищать inputData не нужно (длина актуальных данных в счётчике).
 
       for (int i=0; i < this->len; i++) {
-//        //this->outputData[i] = this->inputData[i];
+        this->outputData[i] = this->inputData[i]; //хм, тоже работает. Всё дело было в print(ln)-ах?
         //Serial.print(this->outputData[i]);
       }
       //Serial.println("");
