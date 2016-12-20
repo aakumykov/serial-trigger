@@ -19,6 +19,13 @@ void loop() {
 
       Serial.print("main loop: data recieved, length is ");
       Serial.println(sListener.dataLength());
+
+      sListener.data();
+
+      sListener.clear();
+
+//      Serial.print("data: ");
+//      Serial.println(sListener.data());
     }
   }
 }

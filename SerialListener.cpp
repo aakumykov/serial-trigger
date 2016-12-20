@@ -25,6 +25,7 @@ class SerialListener
           this->inputData[this->len] = char(0);
           this->len += 1;
           this->dataRecieved = true;
+          Serial.println(this->inputData);
         }
         else 
         {
@@ -47,17 +48,26 @@ class SerialListener
     }
 
     char* data() {
-      Serial.println("SerialListener.data()");
+//      Serial.println("SerialListener.data()");
+//      Serial.print("this->len=");
+//      Serial.println(this->len);
 
-      this->outputData = new char[this->len];
-      
-      for (int i=0; i < this->len; i++) {
-        this->outputData[i] = this->inputData[i];
-      }
+      //this->outputData = new char[this->len];
+//      
+//      for (int i=0; i < this->len; i++) {
+//        this->outputData[i] = this->inputData[i];
+//      }
 
-      this->clear();
+      //this->clear();
       
-      return this->outputData;
+      //return this->outputData;
+    }
+
+    void clear() {
+      Serial.println("SerialListener.clear()");
+      //delete this->inputData;
+      this->len = 0;
+      this->dataRecieved = false;
     }
 
   private:
@@ -71,12 +81,7 @@ class SerialListener
     int len = 0;
     boolean dataRecieved = false;
 
-    void clear() {
-      Serial.println("SerialListener.clear()");
-      delete this->inputData;
-      this->len = 0;
-      this->dataRecieved = false;
-    }
+
 };
 
 
