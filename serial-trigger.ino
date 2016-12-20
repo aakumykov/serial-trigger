@@ -2,7 +2,7 @@
 #include "Interval.cpp"
 
 SerialListener sListener(512, ';');
-Interval interval(500);
+Interval interval(3000);
 
 void setup() {
   Serial.begin(9600);
@@ -20,12 +20,14 @@ void loop() {
       Serial.print("main loop: data recieved, length is ");
       Serial.println(sListener.dataLength());
 
-      sListener.data();
-
-      sListener.clear();
-
-//      Serial.print("data: ");
+      char* data = sListener.data();
+      
+//      Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
+      
+      //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
 //      Serial.println(sListener.data());
+
+      //sListener.clear();
     }
   }
 }

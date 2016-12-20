@@ -14,7 +14,7 @@ class SerialListener
       
       if (!this->dataRecieved && (Serial.available()>0))
       {
-        Serial.println("data is available");
+        //Serial.println("data is available");
         
         byte piece = Serial.read();
         
@@ -48,11 +48,27 @@ class SerialListener
     }
 
     char* data() {
-//      Serial.println("SerialListener.data()");
-//      Serial.print("this->len=");
-//      Serial.println(this->len);
+      Serial.println("SerialListener.data()");
+      Serial.print("this->maxInputLength="); Serial.println(this->maxInputLength);
 
-      //this->outputData = new char[this->len];
+      Serial.print("this->len=");
+      Serial.println(this->len);
+
+      this->outputData = new char[this->len];
+      this->outputData = this->inputData;
+      //this->inputData
+
+      for (int i=0; i < this->len; i++) {
+//        //this->outputData[i] = this->inputData[i];
+        Serial.print(this->outputData[i]);
+      } Serial.println("");
+
+// Три строчки ниже нарушают работу
+//      Serial.print("this->outputData=");
+//      Serial.println(this->outputData);
+////      Serial.println(*this->outputData);
+
+//      this->outputData = new char[this->len];
 //      
 //      for (int i=0; i < this->len; i++) {
 //        this->outputData[i] = this->inputData[i];
@@ -60,14 +76,7 @@ class SerialListener
 
       //this->clear();
       
-      //return this->outputData;
-    }
-
-    void clear() {
-      Serial.println("SerialListener.clear()");
-      //delete this->inputData;
-      this->len = 0;
-      this->dataRecieved = false;
+      return this->outputData;
     }
 
   private:
@@ -81,7 +90,11 @@ class SerialListener
     int len = 0;
     boolean dataRecieved = false;
 
-
+    void clear() {
+      Serial.println("SerialListener.clear()");
+      this->len = 0;
+      this->dataRecieved = false;
+    }
 };
 
 
