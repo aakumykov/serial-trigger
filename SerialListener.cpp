@@ -41,8 +41,8 @@ class SerialListener
       return this->dataRecieved;
     }
 
-    int length() {
-      Serial.println("SerialListener.length()");
+    int dataLength() {
+      //Serial.println("SerialListener.dataLength()");
       return this->len;
     }
 

@@ -17,8 +17,8 @@ void loop() {
     
     if (sListener.isRecieved()){
 
-      Serial.println("main loop: data recieved");
-      
+      Serial.print("main loop: data recieved, length is ");
+      Serial.println(sListener.dataLength());
     }
   }
 }
