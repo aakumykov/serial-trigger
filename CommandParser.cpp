@@ -22,19 +22,33 @@ class CommandParser
 //    Serial.print("the_command: ");
 //    Serial.println(this->the_command);
 
-    this->the_data = new int[512];
+    Serial.println(this->the_data[0]);
+    Serial.println(this->the_data[1]);
+    Serial.println(this->the_data[2]);
+    Serial.println(this->the_data[3]);
 
     this->raw_data = strtok(NULL, this->data_delimiter);
+    
     while (this->raw_data != NULL) {
-      Serial.print("raw_data (");
+      Serial.print("raw_data");
       Serial.print(this->the_counter);
-      Serial.print("): ");
-      Serial.println(this->raw_data);
-      
+      Serial.print(": ");
+      Serial.print(this->raw_data);
+      Serial.print(", ");
+      Serial.print("atoi: ");
+      Serial.print(atoi(this->raw_data));
+      Serial.print(", ");
+
+      Serial.print("the_data");
+      Serial.print(this->the_counter);
+      Serial.print(": ");
       Serial.print(this->the_data[this->the_counter]);
+      
       this->the_data[this->the_counter] = atoi(this->raw_data);
+      
       Serial.print(" -> ");
       Serial.println(this->the_data[this->the_counter]);
+      
       this->the_counter += 1;
       
       this->raw_data = strtok(NULL, this->data_delimiter);
