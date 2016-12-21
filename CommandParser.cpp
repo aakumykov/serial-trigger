@@ -9,19 +9,41 @@ class CommandParser
     }
 
   void parse(char* inputData) {
-    Serial.print("CommandParser.parse(), data: ");
-    Serial.println(inputData);
-
-    this->the_data = new int[512];
+    Serial.print("CommandParser.parse(");
+    Serial.print(inputData);
+    Serial.println(")");
     
-    // Ноль - признак неверной команды.
-    this->the_command = atoi( strtok(inputData, this->command_delimiter) );
+    /* Ноль - неверная команда (может быть передан как прямо,
+     так и появиться, если команда состоит из букв, а не цифр). */
+     
+    this->raw_command = strtok(inputData, this->command_delimiter);
+    this->the_command = atoi(this->raw_command);
 
-    char* token;
-    token = strtok(NULL, this->data_delimiter);
-    while (token != NULL) {
-      this->the_data[this->the_counter++] = atoi(token);
-      token = strtok(NULL, this->data_delimiter);
+    Serial.print("the_command: ");
+    Serial.println(this->the_command);
+
+    this->raw_data = strtok(NULL, this->data_delimiter);
+    while (this->raw_data != NULL) {
+      Serial.print("raw_data (");
+      Serial.print(this->the_counter);
+      Serial.print("): ");
+      Serial.println(this->raw_data);
+      
+      Serial.println(this->the_data[this->the_counter]);
+      this->the_data[this->the_counter] = atoi(this->raw_data);
+      Serial.println(this->the_data[this->the_counter]);
+      this->the_counter += 1;
+      
+      this->raw_data = strtok(NULL, this->data_delimiter);
+    }
+
+    Serial.print("the_counter: "); Serial.println(this->the_counter);
+
+    Serial.println("the_data:");
+    for (int i=0; i < this->the_counter; i++) {
+      Serial.print(i);
+      Serial.print(": ");
+      Serial.println(this->the_data[i]);
     }
   }
 
@@ -41,12 +63,18 @@ class CommandParser
   }
 
   private:
+    // задаются пользователем
     char* command_delimiter;
     char* data_delimiter;
 
+    // служебные
+    char* raw_command;
     int the_command;
+
+    char* raw_data;
+    int* the_data = new int[512];
+
     int the_counter = 0;
-    int* the_data;
 };
 
 

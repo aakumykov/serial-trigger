@@ -26,22 +26,23 @@ void loop() {
       //Serial.println(len); 
       
       //Serial.println("dat1a: "); // раскомментирование этой строки нарушает работу!
-      Serial.println(data);
+      //Serial.println(data);
 
       cParser.parse(data);
 
-      int command = cParser.command();
-      //Serial.println(command);
-      
-      int cLen = cParser.length();
-      //Serial.println(cLen);
-
-      Serial.print(command);
-      Serial.print(": ");
-      int* cData = cParser.data();
-      for (int i=0; i < cLen; i++) {
-        Serial.print(cData[i]);
-      } Serial.println("");
+//      int cCommand = cParser.command();
+//      Serial.print("command: ");
+//      Serial.println(cCommand);
+//      
+//      int cLen = cParser.length();
+//      Serial.print("length: ");
+//      Serial.println(cLen);
+//
+//      Serial.print("data: ");
+//      int* cData = cParser.data();
+//      for (int i=0; i < cLen; i++) {
+//        Serial.print(cData[i]); Serial.print(",");
+//      } Serial.println("");
       
       //Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
       //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
