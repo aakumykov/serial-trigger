@@ -2,9 +2,9 @@
 #include "Interval.cpp"
 #include "CommandParser.cpp"
 
-SerialListener sListener(512, ';');
+SerialListener sListener(256, ';');
 Interval interval(10);
-CommandParser cParser;
+CommandParser cParser(128, ":", ",");
 
 void setup() {
   Serial.begin(9600);
@@ -30,19 +30,19 @@ void loop() {
 
       cParser.parse(data);
 
-//      int cCommand = cParser.command();
-//      Serial.print("command: ");
-//      Serial.println(cCommand);
-//      
-//      int cLen = cParser.length();
-//      Serial.print("length: ");
-//      Serial.println(cLen);
-//
-//      Serial.print("data: ");
-//      int* cData = cParser.data();
-//      for (int i=0; i < cLen; i++) {
-//        Serial.print(cData[i]); Serial.print(",");
-//      } Serial.println("");
+      int cCommand = cParser.command();
+      Serial.print("command: ");
+      Serial.println(cCommand);
+      
+      int cLen = cParser.length();
+      Serial.print("length: ");
+      Serial.println(cLen);
+
+      Serial.print("data: ");
+      int* cData = cParser.data();
+      for (int i=0; i < cLen; i++) {
+        Serial.print(cData[i]); Serial.print(",");
+      } Serial.println("");
       
       //Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
       //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
