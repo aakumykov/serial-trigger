@@ -1,15 +1,21 @@
-#include "SerialListener.cpp"
-#include "Interval.cpp"
-#include "CommandParser.cpp"
+#include <MemoryFree.h>
+#include "SerialListener.h"
+#include "Interval.h"
+#include "CommandParser.h"
 
-SerialListener sListener(256, ';');
 Interval interval(10);
+SerialListener sListener(256, ';');
 CommandParser cParser(128, ":", ",");
+
+void showMem() {
+  Serial.print(F("freeMemory()="));
+  Serial.println(freeMemory());
+}
 
 void setup() {
   Serial.begin(9600);
-  Serial.println("=serial-trigger=");
-  //Serial.println("setup()");
+  Serial.println(F("=serial-trigger="));
+  showMem();
 }
 
 void loop() {
@@ -21,32 +27,27 @@ void loop() {
 
       int len = sListener.dataLength();
       char* data = sListener.data();
-      
-      //Serial.print("main loop: data recieved, length is ");
-      //Serial.println(len); 
-      
-      //Serial.println("dat1a: "); // раскомментирование этой строки нарушает работу!
-      //Serial.println(data);
 
       cParser.parse(data);
 
+      Serial.println(F(""));
+
       int cCommand = cParser.command();
-      Serial.print("command: ");
-      Serial.println(cCommand);
+        Serial.print(F("command: "));
+        Serial.println(cCommand);
       
       int cLen = cParser.length();
-      Serial.print("length: ");
-      Serial.println(cLen);
+        Serial.print(F("length: "));
+        Serial.println(cLen);
 
-      Serial.print("data: ");
+      Serial.print(F("data: "));
       int* cData = cParser.data();
       for (int i=0; i < cLen; i++) {
-        Serial.print(cData[i]); Serial.print(",");
-      } Serial.println("");
-      
-      //Serial.println("qwerty");  // раскомментирование этой строки нарушает работу!
-      //Serial.print("data: "); // раскомментирование этой строки нарушает работу!
-      //Serial.println(sListener.data());
+        Serial.print(cData[i]);
+        Serial.print(F(","));
+      } Serial.println(F(""));
+
+      showMem();
     }
   }
 }
