@@ -32,7 +32,7 @@ void loop() {
 
       Serial.println(F(""));
 
-      int cCommand = cParser.command();
+      unsigned int cCommand = cParser.command();
         Serial.print(F("command: "));
         Serial.println(cCommand);
       
@@ -41,7 +41,7 @@ void loop() {
         Serial.println(cLen);
 
       Serial.print(F("data: "));
-      int* cData = cParser.data();
+      unsigned int* cData = cParser.data();
       for (int i=0; i < cLen; i++) {
         Serial.print(cData[i]);
         Serial.print(F(","));
